@@ -41,7 +41,7 @@ public class LifecycleEventSpy
     public void init( Context context )
         throws Exception
     {
-        logger.info( "Maven Test Profiler 0.1 started." );
+        logger.info( "Maven Test Profiler 0.1.0 started." );
     }
 
     @Override

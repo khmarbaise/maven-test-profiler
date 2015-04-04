@@ -21,6 +21,15 @@ The jar file with the classifier `-mvn325` is intended to be used with
 Maven 3.1.1 until Maven 3.2.5 where as the usual file without classifier
 is intended to use with Maven 3.3.1 and above.
 
+You can find the artifacts in [Maven Central](https://repo1.maven.org/maven2/com/soebes/maven/extensions/profiler/test/)
+under the following coordinates:
+
+``` xml
+<groupId>com.soebes.maven.extensions.profiler.test</groupId>
+<artifactId>test-profiler</artifactId>
+<version>0.1.0</version>
+```
+
 Here's an example of what the output will look like:
 
 ```
@@ -70,6 +79,6 @@ Here's an example of what the output will look like:
 [WARNING]        The path is not as expected. expected [&&] but found [/] java.lang.AssertionError
 ```
 
-Prerequisites for this is Maven 3.1.1 and Java 1.6 as run time.
+Prerequisites minimum for this is Maven 3.1.1 and Java 1.6 as run time.
 
 [1]: http://maven.apache.org/ref/3.0.3/maven-core/apidocs/org/apache/maven/eventspy/AbstractEventSpy.html
