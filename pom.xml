@@ -95,6 +95,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <configuration>
+          <shadedArtifactAttached>true</shadedArtifactAttached>
+          <shadedClassifierName>mvn325</shadedClassifierName>
           <createDependencyReducedPom>false</createDependencyReducedPom>
           <artifactSet>
             <includes>
