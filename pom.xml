@@ -10,7 +10,7 @@
 
   <groupId>com.soebes.maven.extensions.profiler.test</groupId>
   <artifactId>test-profiler</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1-SNAPSHOT</version>
 
   <name>Test :: Profiler</name>
   <properties>
@@ -25,7 +25,7 @@
     <developerConnection>scm:git:git@github.com:khmarbaise/maven-test-profiler.git</developerConnection>
     <connection>scm:git:git://github.com/khmarbaise/maven-test-profiler.git</connection>
     <url>http://khmarbaise.github.com/maven-test-profiler/</url>
-    <tag>test-profiler-0.1.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
