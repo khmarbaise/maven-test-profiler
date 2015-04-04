@@ -17,6 +17,10 @@ build (WARNINGS).
 If you like to use this EventSpy you need to put the resulting jar
 file of this project into the `${M2_HOME}/lib/ext` directory.
 
+The jar file with the classifier `-mvn325` is intended to be used with
+Maven 3.1.1 until Maven 3.2.5 where as the usual file without classifier
+is intended to use with Maven 3.3.1 and above.
+
 Here's an example of what the output will look like:
 
 ```
