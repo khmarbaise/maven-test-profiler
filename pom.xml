@@ -29,6 +29,12 @@
     <tag>HEAD</tag>
   </scm>
 
+  <distributionManagement>
+    <site>
+      <id>github</id>
+      <url>scm:git:git@github.com:khmarbaise/test-profiler.git</url>
+    </site>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
