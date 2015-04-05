@@ -18,17 +18,25 @@ If you like to use this EventSpy you need to put the resulting jar
 file of this project into the `${M2_HOME}/lib/ext` directory.
 
 The jar file with the classifier `-mvn325` is intended to be used with
-Maven 3.1.1 until Maven 3.2.5 where as the usual file without classifier
-is intended to use with Maven 3.3.1 and above.
+Maven 3.1.1 up to and including Maven 3.2.5.
 
-You can find the artifacts in [Maven Central](https://repo1.maven.org/maven2/com/soebes/maven/extensions/profiler/test/)
-under the following coordinates:
+You can find the artifacts in [Maven Central](https://repo1.maven.org/maven2/com/soebes/maven/extensions/profiler/test/test-profiler/0.1.0/).
+
+If you like to use this extension in relationship with Maven 3.3.1 you
+have to define the following `.mvn/extensions.xml` file:
 
 ``` xml
-<groupId>com.soebes.maven.extensions.profiler.test</groupId>
-<artifactId>test-profiler</artifactId>
-<version>0.1.0</version>
+<extensions xmlns="http://maven.apache.org/EXTENSIONS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/EXTENSIONS/1.0.0 http://maven.apache.org/xsd/core-extensions-1.0.0.xsd">
+  <extension>
+    <groupId>com.soebes.maven.extensions.profiler.test</groupId>
+    <artifactId>test-profiler</artifactId>
+    <version>0.1.0</version>
+  </extension>
+</extensions>
 ```
+
+The download from Maven Central will be done by Maven itself.
 
 Here's an example of what the output will look like:
 
