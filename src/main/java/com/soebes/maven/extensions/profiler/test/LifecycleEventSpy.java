@@ -21,6 +21,7 @@ import org.apache.maven.reporting.MavenReportException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
  * @author Karl Heinz Marbaise <khmarbaise@apache.org>
  */
@@ -41,7 +42,7 @@ public class LifecycleEventSpy
     public void init( Context context )
         throws Exception
     {
-        logger.info( "Maven Test Profiler 0.1.0 started." );
+        logger.info( "Maven Test Profiler 0.1.1 started." );
     }
 
     @Override
@@ -177,7 +178,7 @@ public class LifecycleEventSpy
         String totalErrors = summary.get( "totalErrors" );
         String totalSkipped = summary.get( "totalSkipped" );
         String totalFailures = summary.get( "totalFailures" );
-        Float totalElapsedTime = Float.parseFloat( summary.get( "totalElapsedTime" ) );
+        Float totalElapsedTime = toFloat( summary.get( "totalElapsedTime" ) );
 
         StringBuilder sb = new StringBuilder();
         sb.append( String.format( "%9s", totalTests ) );
@@ -196,9 +197,21 @@ public class LifecycleEventSpy
         logger.info( "" );
         logger.info( "Rate: {} %", summary.get( "totalPercentage" ) );
 
-        Float averageTimePerTest = totalElapsedTime / Float.parseFloat( totalTests );
+        Float averageTimePerTest = divide( totalElapsedTime , toFloat( totalTests ) );
         logger.info( "Average Time per Test: {}", String.format( "%6.6f", averageTimePerTest ) );
 
+    }
+    
+    private Float divide( Float upper, Float lower )
+    {
+        return lower == 0.0f
+                ? 0
+                : (upper / lower);
+    }
+    
+    private Float toFloat( String str )
+    {
+        return Float.parseFloat( str.replace( ",", "" ) );
     }
 
     private void printResult( List<ReportTestSuite> unitTestsResults )
