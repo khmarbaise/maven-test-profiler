@@ -13,6 +13,8 @@ import javax.inject.Singleton;
 
 import org.apache.maven.eventspy.AbstractEventSpy;
 import org.apache.maven.execution.MavenExecutionResult;
+import org.apache.maven.plugin.surefire.log.api.ConsoleLogger;
+import org.apache.maven.plugin.surefire.log.api.ConsoleLoggerDecorator;
 import org.apache.maven.plugins.surefire.report.ReportTestCase;
 import org.apache.maven.plugins.surefire.report.ReportTestSuite;
 import org.apache.maven.plugins.surefire.report.SurefireReportParser;
@@ -41,7 +43,7 @@ public class LifecycleEventSpy
     public void init( Context context )
         throws Exception
     {
-        logger.info( "Maven Test Profiler 0.1.0 started." );
+        logger.info( "Maven Test Profiler 0.1.1 started." );
     }
 
     @Override
@@ -70,9 +72,9 @@ public class LifecycleEventSpy
     private List<ReportTestSuite> getAllTestReports( File reportDirectory )
         throws MavenReportException
     {
-        SurefireReportParser report = new SurefireReportParser();
-        report.setLocale( Locale.ENGLISH );
-        report.setReportsDirectory( reportDirectory );
+        List<File> reportsDirectories = Collections.singletonList( reportDirectory );
+        ConsoleLogger consoleLogger = new ConsoleLoggerDecorator( logger );
+        SurefireReportParser report = new SurefireReportParser( reportsDirectories, Locale.ENGLISH, consoleLogger );
         List<ReportTestSuite> parseXMLReportFiles = report.parseXMLReportFiles();
         return parseXMLReportFiles;
     }
@@ -128,11 +130,10 @@ public class LifecycleEventSpy
 
         for ( ReportTestCase reportTestCase : testCases )
         {
-            if ( ( reportTestCase.getFailure() != null ) && !reportTestCase.getFailure().isEmpty() )
+            if ( reportTestCase.hasFailure() )
             {
-                Map<String, Object> failure = reportTestCase.getFailure();
-                String message = (String) failure.get( "message" );
-                String type = (String) failure.get( "type" );
+                String message = reportTestCase.getFailureMessage();
+                String type = reportTestCase.getFailureType();
                 // FIXME: Currently i can't access the stack trace output which is in the xml file!!
                 logger.warn( "Failed Test case: {}({})", reportTestCase.getName(), reportTestCase.getFullClassName() );
                 logger.warn( "       {} {}", message, type );
@@ -167,8 +168,8 @@ public class LifecycleEventSpy
 
     private void printSummary( List<ReportTestSuite> unitTestsResults )
     {
-        SurefireReportParser report = new SurefireReportParser();
-        report.setLocale( Locale.ENGLISH );
+        List<File> reportsDirectories = Collections.emptyList();
+        SurefireReportParser report = new SurefireReportParser( reportsDirectories, Locale.ENGLISH, new ConsoleLoggerDecorator( logger ));
         Map<String, String> summary = report.getSummary( unitTestsResults );
 
         logger.info( "--------- -------- ------ ------- ----------" );
