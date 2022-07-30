@@ -5,9 +5,9 @@ the list of the `bad tests` which means to find those tests
 which are taking the most time to run.
 
 This is an [EventSpy][1] implementation which collects all the information
-of all unit tests which have been ran by maven-surefire-plugin
+of all unit tests which have been run by maven-surefire-plugin
 and make a summarization output at the end of the build.
-This means every suite is listed separately with their approriate 
+This means every suite is listed separately with their appropriate 
 run time afterwards you get a list of the worst five test suites
 which gives you a hint where to look for bad tests.
 
